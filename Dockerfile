@@ -1,9 +1,8 @@
-FROM blacklabelops/alpine:3.7
-MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
+FROM alpine:3.7
 
 # Note that you also need to update buildscripts/release.sh when the
 # Jira version changes
-ARG JIRA_VERSION=7.12.0
+ARG JIRA_VERSION=${JIRA_VERSION}
 ARG JIRA_PRODUCT=jira-software
 # Permissions, set the linux user id and group id
 ARG CONTAINER_UID=1000
@@ -31,6 +30,7 @@ COPY imagescripts ${JIRA_SCRIPTS}
 
 RUN apk add --update                                    \
       ca-certificates                                   \
+      bash                                              \
       gzip                                              \
       curl                                              \
       tini                                              \
@@ -119,4 +119,5 @@ WORKDIR ${JIRA_HOME}
 VOLUME ["/var/atlassian/jira"]
 EXPOSE 8080
 ENTRYPOINT ["/sbin/tini","--","/usr/local/share/atlassian/docker-entrypoint.sh"]
+#CMD sleep 7200
 CMD ["jira"]
