@@ -6,14 +6,14 @@ if [ ! -f MicrosoftJIRASSO6x7x/MSSsoJiraPlugin-1.0.1.jar ]
 then
   mkdir -p MicrosoftJIRASSO6x7x
   cd MicrosoftJIRASSO6x7x
-  unzip ../MicrosoftJIRASSO6x7x.obr
+  jar xf ../MicrosoftJIRASSO6x7x.obr
   cd ..
 fi
 
 if [ ! -f MicrosoftJIRASSO6x7x/MSSsoJiraPlugin-1.0.1/templates/jira-configure/jiraSSOConfiguration.vm ] ; then
   mkdir -p MicrosoftJIRASSO6x7x/MSSsoJiraPlugin-1.0.1/
   cd MicrosoftJIRASSO6x7x/MSSsoJiraPlugin-1.0.1/
-  unzip ../MSSsoJiraPlugin-1.0.1.jar
+  jar xf ../MSSsoJiraPlugin-1.0.1.jar
   cd ../..
 fi
 
@@ -22,8 +22,4 @@ cp -f jiraSSOConfiguration.vm MicrosoftJIRASSO6x7x/MSSsoJiraPlugin-1.0.1/templat
 rm -f ../MSSsoJiraPlugin-1.0.1.jar
 cd MicrosoftJIRASSO6x7x/MSSsoJiraPlugin-1.0.1/
 jar cf ../MSSsoJiraPlugin-1.0.1.jar .
-cd ..
-rm -f MicrosoftJIRASSO6x7x.obr
-rm -fr MSSsoJiraPlugin-1.0.1
-jar cf ../MicrosoftJIRASSO6x7x.obr .
 
